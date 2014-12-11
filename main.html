@@ -57,23 +57,26 @@
 	</head>
 <body onLoad="setupPage()">
 	<div class="wrapper">
-	 <div class="navbar navbar-fixed-top col-lg-8 col-md-8 col-sm-8"><h1>ZdravjeKit <small><small>uses HealthKit</small></small></h1></div>
+	 <div class="navbar navbar-fixed-top col-lg-10 col-md-10 col-sm-10"><h1>ZdravjeKit <small><small>uses HealthKit</small></small></h1></div>
 	 <div class="container">
 	 <div class="row row-centered">
-		 <div class="col-lg-10 col-md-10 col-sm-10 col-centered">
+		 <div class="col-lg-8 col-md-10 col-sm-10 col-centered">
 				<div class="panel panel-default">
 					<div class="panel-body">
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="col-lg-7 col-md-7 col-sm-7" style="display:inline-block">
 								<h2 id="user_name">Janez Novak</h2>
 								<h6 id"user_birthdate">1993-05-10</h6>
 							</div>
-							<div class="col-lg-6 col-md-6 col-sm-6" style="text-align:right">
+							<div class="col-lg-1 col-md-1 col-sm-1" style="float: right;">
 								<button type="button" class="btn btn-primary btn-xs" onclick="toggleDodajPodatke()" id="dodajPodatkeButton">+</button>
 							</div>
+
 						</div>
-				  	</div>
 				</div>
+			</div>
+	</div>
+	<div class="row row-centered">
+		<div class="col-lg-8 col-md-10 col-sm-10 col-centered">
 				<div class="panel panel-default" id="dodajPodatke">
 					<div class="panel-heading">
 						<div class="row">
@@ -94,7 +97,7 @@
 				  	</div>
 				</div>
 			</div>
-	</div>
+		</div>
 	</div>
 </div>
 </body>
