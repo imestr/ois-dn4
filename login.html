@@ -35,6 +35,10 @@
 		   	 	margin-top: 100px;
 		   	 }
 
+		   	 .button_info {
+		   	 	text-align: center;
+		   	 }
+
 		</style>
 	</head>
 <body>
@@ -46,16 +50,17 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="row">
-						<div class="col-lg-8 col-md-8 col-sm-8"><b>Uporabnik</b></div>
-						<div class="col-lg-4 col-md-4 col-sm-4"><select class="form-control input-sm" id="preberiPredlogoBolnika"><option value=""></option><option value="Pujsa,Pepa,1938-10-30T14:58">Pujsa Pepa</option></select></div>
+						<div class="col-lg-8 col-md-8 col-sm-8"><b>Vnesi svoj ehrID</b></div>
+						
 					</div>
 				</div>
 				<div class="panel-body">
-					<span class="label label-default">Ime</span><input id="kreirajIme" type="text" class="form-control input-mini" placeholder="Janez">
-					<span class="label label-default">Priimek</span><input id="kreirajPriimek" type="text" class="form-control" placeholder="Novak">
-					<span class="label label-default">Datum rojstva</span><input id="kreirajDatumRojstva" type="text" class="form-control" placeholder="1957-03-10T09:08">
+					<span class="label label-default">ID</span><input id="ehrIdInput" type="text" class="form-control input-mini" placeholder="a79937a5-761f-4792-9640-d1b4c3e5f88d">
 					<br/>
-					<button type="button" class="btn btn-primary btn-xs" onclick="kreirajEHRzaBolnika()">Ustvari</button><span id="kreirajSporocilo"></span>
+					<div class = "button_info">
+					<button type="button" class="btn btn-primary btn-md" onClick="passIdToNextPage()">Vstopi</button>
+					<span id="kreirajSporocilo"></span>
+				</div>
 			  	</div>
 			</div>
 		</div>
