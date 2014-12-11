@@ -33,25 +33,35 @@
 		   	 }
 		   	 .container {
 		   	 	margin-top: 100px;
-		   	 	text-align: center;
 		   	 }
-		   	.vstop {
-		   		background-color: lime;
-		   		border-color: white;
-		   	}
 
 		</style>
 	</head>
 <body>
-<div class="wrapper">
+	<div class="wrapper">
 	 <div class="navbar navbar-fixed-top col-lg-8 col-md-8 col-sm-8"><h1>ZdravjeKit <small><small>uses HealthKit</small></small></h1></div>
 	 <div class="container">
-	 	<button type="button" class="btn btn-primary btn-lg vstop">Vstop</button>
-	 	<br/><br/>
-		<button type="button" class="btn btn-primary btn-md novuporabnik" onClick="parent.location='newUser.html'">Nov uporabnik</button>
+	 <div class="row">
+		 <div class="col-lg-8 col-md-8 col-sm-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-lg-8 col-md-8 col-sm-8"><b>Uporabnik</b></div>
+						<div class="col-lg-4 col-md-4 col-sm-4"><select class="form-control input-sm" id="preberiPredlogoBolnika"><option value=""></option><option value="Pujsa,Pepa,1938-10-30T14:58">Pujsa Pepa</option></select></div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<span class="label label-default">Ime</span><input id="kreirajIme" type="text" class="form-control input-mini" placeholder="Janez">
+					<span class="label label-default">Priimek</span><input id="kreirajPriimek" type="text" class="form-control" placeholder="Novak">
+					<span class="label label-default">Datum rojstva</span><input id="kreirajDatumRojstva" type="text" class="form-control" placeholder="1957-03-10T09:08">
+					<br/>
+					<button type="button" class="btn btn-primary btn-xs" onclick="kreirajEHRzaBolnika()">Ustvari</button> <span id="kreirajSporocilo"></span>
+			  	</div>
+			</div>
+		</div>
+	</div>
 	</div>
 </div>
 </body>
 
 </html>
-
