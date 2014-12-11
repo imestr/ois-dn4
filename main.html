@@ -48,6 +48,11 @@
 			    margin-right:-4px;
 			}
 
+			#dodajPodatkeButton {
+				background-color: orange;
+				border-width: 0;
+			}
+
 		</style>
 	</head>
 <body onLoad="setupPage()">
@@ -63,6 +68,9 @@
 								<h2 id="user_name">Janez Novak</h2>
 								<h6 id"user_birthdate">1993-05-10</h6>
 							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6" style="text-align:right">
+								<button type="button" class="btn btn-primary btn-xs" onclick="toggleDodajPodatke()" id="dodajPodatkeButton">+</button>
+							</div>
 						</div>
 				  	</div>
 				</div>
@@ -74,7 +82,6 @@
 						</div>
 					</div>				
 					<div class="panel-body">
-						<span class="label label-default">EHR ID</span><input id="dodajVitalnoEHR" type="text" class="form-control input-mini" placeholder="7b661e12-3a98-21ad-c29e-2dc9f5a3d885">
 						<span class="label label-default">Datum in ura</span><input id="dodajVitalnoDatumInUra" type="text" class="form-control input-mini" placeholder="2014-11-21T11:40Z">
 						<span class="label label-default">Telesna višina</span><div class="input-group"><input id="dodajVitalnoTelesnaVisina" type="text" class="form-control input-mini" placeholder="185"><span class="input-group-addon">cm</span></div>
 						<span class="label label-default">Telesna teža</span><div class="input-group"><input id="dodajVitalnoTelesnaTeza" type="text" class="form-control input-mini" placeholder="80.00"><span class="input-group-addon">kg</span></div>
