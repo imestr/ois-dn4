@@ -68,11 +68,17 @@
 				<div class="panel-heading">
 					<div class="row">
 						<div class="col-lg-8 col-md-8 col-sm-8"><b>Vnesi svoj ehrID</b></div>
-						
+						<div class="col-lg-4 col-md-4 col-sm-4">
+						<select class="form-control input-sm" id="preberiObstojeciEHR">
+							<option value=""></option>
+							<option value="59989df1-a116-434e-ab0b-8c0880f34327">Janez Novak</option>
+							<option value="d5c27df0-14b3-45ee-942e-5ce023a3a756">Samo Oblak</option>
+							<option value="e8a1136a-506e-414f-b3f2-dff502603e80">Tilen Zelinka</option>
+						</select></div>
 					</div>
 				</div>
 				<div class="panel-body">
-					<span class="label label-default">ID</span><input id="ehrIdInput" type="text" class="form-control input-mini" placeholder="a79937a5-761f-4792-9640-d1b4c3e5f88d">
+					<span class="label label-default">ID</span><input id="preberiEHRid" type="text" class="form-control input-mini" placeholder="a79937a5-761f-4792-9640-d1b4c3e5f88d">
 					<br/>
 					<div class = "button_info">
 					<button type="button" class="btn btn-primary btn-md" onClick="passIdToNextPage()">Vstopi</button>
