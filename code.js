@@ -134,11 +134,11 @@ function toggleDodajPodatke() {
 	console.log("Dodaj podatke je viden: "+!isVisible);
 	if (isVisible) {
 		$("#dodajPodatke").hide();
-		$("#dodajPodatkeButton").text("+");
+		$("#dodajPodatkeButton").text("Dodaj");
 	}
 	else {
 		$("#dodajPodatke").show();
-		$("#dodajPodatkeButton").text("-");
+		$("#dodajPodatkeButton").text("Skrij");
 	}
 }
 
