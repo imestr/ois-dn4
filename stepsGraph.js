@@ -1,56 +1,7 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<style>
-
-svg {
-  font: 10px sans-serif;
-}
-
-.y.axis path {
-  display: none;
-}
-
-.y.axis line {
-  stroke: #fff;
-  stroke-opacity: .2;
-  shape-rendering: crispEdges;
-}
-
-.y.axis .zero line {
-  stroke: #000;
-  stroke-opacity: 1;
-}
-
-.title {
-  font: 300 78px Helvetica Neue;
-  fill: #666;
-}
-
-.date {
-  text-anchor: middle;
-}
-
-.date {
-  fill: #fff;
-}
-
-rect {
-  fill-opacity: .6;
-  fill: #e377c2;
-}
-
-rect:first-child {
-  fill: #1f77b4;
-}
-
-</style>
-<body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script>
-
-var margin = {top: 20, right: 40, bottom: 30, left: 20},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom,
+console.log("STEPS GRAPH JS");
+var margin = {top: 20, right: 40, bottom: 20, left: 20},
+    width = 550 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom,
     barWidth = Math.floor(width / 22) - 1;
 
 var x = d3.scale.linear()
@@ -63,10 +14,10 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("right")
     .tickSize(-width)
-    .tickFormat(function(d) { return Math.round(d) + " steps"; });
+    .tickFormat(function(d) { return Math.round(d); });
 
 // An SVG element with a bottom-right origin.
-var svg = d3.select("body").append("svg")
+var svg = d3.select("div.stepsGraph").append("svg:svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -170,7 +121,3 @@ d3.csv("steps.csv", function(error, data) {
         .attr("height", function(value) { return height - y(value); });*/
   }
 });
-
-</script>
-</body>
-</html>

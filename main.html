@@ -8,6 +8,7 @@
 	    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	    <script src="code.js"></script>
+	    
 	    <style type="text/css">
 	    	.page-header h1 {
 		   		color: black;
@@ -77,6 +78,52 @@
 			    text-decoration: none;
 			}
 
+
+			svg {
+			  font: 10px sans-serif;
+			}
+
+			.y.axis path {
+			  display: none;
+			}
+
+			.y.axis line {
+			  stroke: #fff;
+			  stroke-opacity: .2;
+			  shape-rendering: crispEdges;
+			}
+
+			.y.axis .zero line {
+			  stroke: #000;
+			  stroke-opacity: 1;
+			}
+
+			.title {
+			  font: 300 78px Helvetica Neue;
+			  fill: #666;
+			}
+
+			.date {
+			  text-anchor: middle;
+			}
+
+			.date {
+			  fill: #fff;
+			}
+
+			rect {
+			  fill-opacity: .6;
+			  fill: #e377c2;
+			}
+
+			rect:first-child {
+			  fill: #1f77b4;
+			}
+
+			.stepsGraph {
+				text-align: center;
+			}
+
 		</style>
 	</head>
 <body onLoad="setupPage()">
@@ -140,8 +187,24 @@
 				</div>			
 			</div>
 		</div>
+		<div class="row row-centered">
+			<div class="col-lg-8 col-md-10 col-sm-10 col-centered">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<b>Graf korakov</b>
+					</div>				
+					<div class="panel-body">
+						<div class="stepsGraph">
+						<script src="http://d3js.org/d3.v3.min.js"></script>
+						<script src="stepsGraph.js"></script>
+						</div>
+				  	</div>
+				</div>			
+			</div>
+		</div>
 	</div>
 </div>
+	
 </body>
 
 </html>
