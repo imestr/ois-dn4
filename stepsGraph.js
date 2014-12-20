@@ -113,13 +113,13 @@ d3.csv("steps.csv", function(error, data) {
     //title.text(date);
     
     dates.transition()
-        .duration(750)
+        .duration(400)
         .attr("transform", "translate(" + (x(date1) - x(date)) + ",0)");
 
     dateV.selectAll("rect")
         .data(function(dateV) { return [data[dateV][0]] || [0]; })
       .transition()
-        .duration(750)
+        .duration(400)
         .attr("y", y)
         .attr("height", function(value) { return height - y(value); });
   }
