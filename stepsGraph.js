@@ -1,7 +1,7 @@
 console.log("STEPS GRAPH JS");
 var margin = {top: 20, right: 40, bottom: 20, left: 20},
     width = 550 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom,
+    height = 350 - margin.top - margin.bottom,
     barWidth = Math.floor(width / 22) - 1;
 
 var x = d3.scale.linear()
@@ -17,11 +17,14 @@ var yAxis = d3.svg.axis()
     .tickFormat(function(d) { return Math.round(d); });
 
 // An SVG element with a bottom-right origin.
-var svg = d3.select("div.stepsGraph").append("svg:svg")
+var svg = d3.select("#stepsGraph").append("svg:svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+    .attr("viewBox", "0 0 640 640")
+    .attr("preserveAspectRatio", "xMaxYmax")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
 
 // A sliding container to hold the bars by birthyear.
 var dates = svg.append("g")
