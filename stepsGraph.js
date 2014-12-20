@@ -1,8 +1,8 @@
 console.log("STEPS GRAPH JS");
-var margin = {top: 20, right: 40, bottom: 20, left: 20},
+var margin = {top: 20, right: 40, bottom: 10, left: 20},
     width = 640 - margin.left - margin.right,
     height = 480 - margin.top - margin.bottom,
-    barWidth = Math.floor(width / 22) - 1;
+    barWidth = Math.floor(width / 7) - 1;
 
 var x = d3.scale.linear()
     .range([barWidth / 2, width - barWidth / 2]);
@@ -13,8 +13,8 @@ var y = d3.scale.linear()
 var yAxis = d3.svg.axis()
     .scale(y)
     .orient("right")
-    .tickSize(-width)
-    .tickFormat(function(d) { return Math.round(d); });
+    .tickSize(0)
+    .tickFormat(function(d) { console.log("d:"+d);return Math.round(d); });
 
 // An SVG element with a bottom-right origin.
 var svg = d3.select("#stepsGraph").append("svg")
@@ -55,7 +55,7 @@ d3.csv("steps.csv", function(error, data) {
     console.log(date1);
     console.log(steps1);
   // Update the scale domains.
-  x.domain([date1 - date0, date1]);
+  x.domain([date1 - 6, date1]);
   y.domain([0, steps1]);
 
   
@@ -102,25 +102,25 @@ d3.csv("steps.csv", function(error, data) {
   window.focus();
   d3.select(window).on("keydown", function() {
     switch (d3.event.keyCode) {
-      case 37: year = Math.max(year0, year - 10); break;
-      case 39: year = Math.min(year1, year + 10); break;
+      case 37: date = Math.max(date0, date - 1); break;
+      case 39: date = Math.min(date1, date + 1); break;
     }
     update();
   });
 
   function update() {
     if (!(date in data)) return;
-    title.text(date);
-    /*
-    birthyears.transition()
+    //title.text(date);
+    
+    dates.transition()
         .duration(750)
         .attr("transform", "translate(" + (x(date1) - x(date)) + ",0)");
 
-    birthyear.selectAll("rect")
-        .data(function(birthyear) { return data[date][birthyear] || [0, 0]; })
+    dateV.selectAll("rect")
+        .data(function(dateV) { return [data[dateV][0]] || [0]; })
       .transition()
         .duration(750)
         .attr("y", y)
-        .attr("height", function(value) { return height - y(value); });*/
+        .attr("height", function(value) { return height - y(value); });
   }
 });
