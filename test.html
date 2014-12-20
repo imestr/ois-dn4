@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+svg {
+  font: 10px sans-serif;
+}
+
+.y.axis path {
+  display: none;
+}
+
+.y.axis line {
+  stroke: #fff;
+  stroke-opacity: .2;
+  shape-rendering: crispEdges;
+}
+
+.y.axis .zero line {
+  stroke: #000;
+  stroke-opacity: 1;
+}
+
+.title {
+  font: 300 78px Helvetica Neue;
+  fill: #666;
+}
+
+.date {
+  text-anchor: middle;
+}
+
+.date {
+  fill: #fff;
+}
+
+rect {
+  fill-opacity: .6;
+  fill: #e377c2;
+}
+
+rect:first-child {
+  fill: #1f77b4;
+}
+
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+var margin = {top: 20, right: 40, bottom: 30, left: 20},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom,
+    barWidth = Math.floor(width / 22) - 1;
+
+var x = d3.scale.linear()
+    .range([barWidth / 2, width - barWidth / 2]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("right")
+    .tickSize(-width)
+    .tickFormat(function(d) { return Math.round(d) + " steps"; });
+
+// An SVG element with a bottom-right origin.
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+// A sliding container to hold the bars by birthyear.
+var dates = svg.append("g")
+    .attr("class", "dates");
+
+// A label for the current year.
+
+var title = svg.append("text")
+    .attr("class", "title")
+    .attr("dy", ".71em")
+    .text(2000);
+
+d3.csv("steps.csv", function(error, data) {
+
+  // Convert strings to numbers.
+  data.forEach(function(d) {
+    d.date = +d.date;
+    d.steps = +d.steps;
+  });
+
+  // Compute the extent of the data set in age and years.
+  var steps1 = d3.max(data, function(d) { return d.steps; }),
+      date0 = d3.min(data, function(d) { return d.date; }),
+      date1 = d3.max(data, function(d) { return d.date; }),
+      date = date1;
+
+    console.log(date0);
+    console.log(date1);
+    console.log(steps1);
+  // Update the scale domains.
+  x.domain([date1 - date0, date1]);
+  y.domain([0, steps1]);
+
+  
+  
+  data = d3.nest()
+      .key(function(d) { return d.date; })
+      //.key(function(d) { return d.date - 5; })
+      .rollup(function(v) { return v.map(function(d) { return d.steps; }); })
+      .map(data);
+
+  // Add an axis to show the population values.
+  svg.append("g")
+      .attr("class", "y axis")
+      .attr("transform", "translate(" + width + ",0)")
+      .call(yAxis)
+    .selectAll("g")
+    .filter(function(value) { return !value; })
+      .classed("zero", true);
+
+  // Add labeled rects for each birthyear (so that no enter or exit is required).
+  var dateV = dates.selectAll(".date")
+      .data(d3.range(date0, date1+1, 1))
+    .enter().append("g")
+      .attr("class", "dates")
+      .attr("transform", function(dateV) { return "translate(" + x(dateV) + ",0)"; });
+
+  console.log(dateV);
+
+  dateV.selectAll("rect")
+      .data(function(dateV) { return [data[dateV][0]] || [0]; })
+    .enter().append("rect")
+      .attr("x", -barWidth / 2)
+      .attr("width", barWidth)
+      .attr("y", y)
+      .attr("height", function(value) { return height - y(value); });
+
+  // Add labels to show birthyear.
+  dateV.append("text")
+      .attr("y", height+14)
+      .text(function(dateV) { return dateV; });
+  
+
+  // Allow the arrow keys to change the displayed year.
+  window.focus();
+  d3.select(window).on("keydown", function() {
+    switch (d3.event.keyCode) {
+      case 37: year = Math.max(year0, year - 10); break;
+      case 39: year = Math.min(year1, year + 10); break;
+    }
+    update();
+  });
+
+  function update() {
+    if (!(date in data)) return;
+    title.text(date);
+    /*
+    birthyears.transition()
+        .duration(750)
+        .attr("transform", "translate(" + (x(date1) - x(date)) + ",0)");
+
+    birthyear.selectAll("rect")
+        .data(function(birthyear) { return data[date][birthyear] || [0, 0]; })
+      .transition()
+        .duration(750)
+        .attr("y", y)
+        .attr("height", function(value) { return height - y(value); });*/
+  }
+});
+
+</script>
+</body>
+</html>
