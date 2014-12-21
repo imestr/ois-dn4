@@ -427,6 +427,28 @@ function preberiMeritveVitalnihZnakov() {
 							console.log(JSON.parse(err.responseText).userMessage);
 					    }
 					});					
+				} else if (tip == "srcni utrip") {
+					$.ajax({
+					    url: baseUrl + "/view/" + ehrId + "/" + "pulse",
+					    type: 'GET',
+					    headers: {"Ehr-Session": sessionId},
+					    success: function (res) {
+					    	if (res.length > 0) {
+						    	var results = "<table class='table table-striped table-hover'><tr><th>Datum in ura</th><th class='text-right'>srčni utrip</th></tr>";
+						        for (var i in res) {
+						            results += "<tr><td>" + res[i].time + "</td><td class='text-right'>" + res[i].pulse + " " + "</td>";
+						        }
+						        results += "</table>";
+						        $("#rezultatMeritveVitalnihZnakov").append(results);
+					    	} else {
+					    		$("#preberiMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-warning fade-in'>Ni podatkov!</span>");
+					    	}
+					    },
+					    error: function() {
+					    	$("#preberiMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo label label-danger fade-in'>Napaka '" + JSON.parse(err.responseText).userMessage + "'!");
+							console.log(JSON.parse(err.responseText).userMessage);
+					    }
+					});					
 				} else if (tip == "telesna temperatura AQL") {
 					var AQL = 
 						"select " +
